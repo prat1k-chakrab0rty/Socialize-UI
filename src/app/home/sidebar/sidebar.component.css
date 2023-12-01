@@ -1,0 +1,4 @@
+.sidebar-group > .list-group-item{
+    cursor: pointer;
+    border-color: transparent;
+}
