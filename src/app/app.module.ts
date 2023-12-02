@@ -6,7 +6,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
-import { BodyComponent } from './home/body/body.component';
+import { FeedComponent } from './home/feed/feed.component';
+import { MessagesComponent } from './home/messages/messages.component';
+import { FriendsComponent } from './home/friends/friends.component';
+import { GroupsComponent } from './home/groups/groups.component';
+import { TopbarComponent } from './home/topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { BodyComponent } from './home/body/body.component';
     LoginComponent,
     HomeComponent,
     SidebarComponent,
-    BodyComponent
+    FeedComponent,
+    MessagesComponent,
+    FriendsComponent,
+    GroupsComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,

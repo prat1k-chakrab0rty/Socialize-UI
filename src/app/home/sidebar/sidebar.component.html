@@ -1,4 +1,4 @@
-<div class="height-full bg-dark">
+<div class="height-sidebar bg-dark">
     <div class="sidebar-group list-group">
         <a *ngFor="let module of modules" class="list-group-item" [ngClass]="{'active':module==activeModule,' list-group-item-action':module!=activeModule}" (click)="setActiveModule(module)">{{module.name}}</a>
     </div>

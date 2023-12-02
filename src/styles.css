@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-.height-full {
-  height: 100vh;
+.height-topbar {
+  height: 10vh;
+}
+.height-sidebar {
+  height: 90vh;
 }
 .row > div {
   padding: 0;

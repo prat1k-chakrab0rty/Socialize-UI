@@ -2,3 +2,6 @@
     cursor: pointer;
     border-color: transparent;
 }
+.sidebar-group{
+    border-radius: 0;
+}
