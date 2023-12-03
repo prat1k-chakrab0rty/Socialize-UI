@@ -11,6 +11,7 @@ import { MessagesComponent } from './home/messages/messages.component';
 import { FriendsComponent } from './home/friends/friends.component';
 import { GroupsComponent } from './home/groups/groups.component';
 import { TopbarComponent } from './home/topbar/topbar.component';
+import { NotfoundComponent } from './home/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TopbarComponent } from './home/topbar/topbar.component';
     MessagesComponent,
     FriendsComponent,
     GroupsComponent,
-    TopbarComponent
+    TopbarComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
