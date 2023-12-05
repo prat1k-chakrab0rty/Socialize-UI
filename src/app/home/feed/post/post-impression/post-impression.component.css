@@ -1,0 +1,17 @@
+.d-none{
+    margin-left: .5rem;
+}
+.btn{
+    width: 33.3%;
+}
+.justify-content-evenly{
+    width: 80%;
+}
+@media (max-width:768px) {
+    .justify-content-evenly{
+        width: 100%;
+    }  
+    .btn{
+        width: 20%;
+    }
+}

@@ -12,6 +12,9 @@ import { FriendsComponent } from './home/friends/friends.component';
 import { GroupsComponent } from './home/groups/groups.component';
 import { TopbarComponent } from './home/topbar/topbar.component';
 import { NotfoundComponent } from './home/notfound/notfound.component';
+import { PostComponent } from './home/feed/post/post.component';
+import { PostBodyComponent } from './home/feed/post/post-body/post-body.component';
+import { PostImpressionComponent } from './home/feed/post/post-impression/post-impression.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { NotfoundComponent } from './home/notfound/notfound.component';
     FriendsComponent,
     GroupsComponent,
     TopbarComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    PostComponent,
+    PostBodyComponent,
+    PostImpressionComponent
   ],
   imports: [
     BrowserModule,

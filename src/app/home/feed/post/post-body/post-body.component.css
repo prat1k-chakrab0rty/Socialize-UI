@@ -1,0 +1,22 @@
+.time-ago {
+  font-size: x-small;
+  font-weight: bold;
+  color: gray;
+}
+img {
+  border-radius: 5px;
+}
+.image-container {
+    width: 100%; /* Adjust as needed */
+    position: relative;
+  }
+  .image-container img{
+    width: 80%;
+    object-fit: contain;
+  }
+@media (max-width: 768px) {
+  .image-container img {
+    width: 100%;
+    object-fit: contain;
+  }
+}

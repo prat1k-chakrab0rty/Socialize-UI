@@ -5,6 +5,10 @@
 .height-sidebar {
   height: 90vh;
 }
+.height-body {
+  max-height: 90vh;
+  overflow-y: auto;
+}
 .row > div {
   padding: 0;
 }
