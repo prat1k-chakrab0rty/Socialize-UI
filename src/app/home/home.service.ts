@@ -7,8 +7,9 @@ import { modules } from './sidebar/sidebar.data';
   providedIn: 'root',
 })
 export class HomeService {
-  activeModuleChanged:BehaviorSubject<Module>=new BehaviorSubject<Module>(modules[0]);
+  activeModuleChanged:BehaviorSubject<Module>=new BehaviorSubject<Module>(modules[+localStorage.getItem("moduleId")!]);
   setActiveModule(i: Module) {
+    localStorage.setItem("moduleId",i.id.toString());
     this.activeModuleChanged.next(i);
   }
   constructor() {}

@@ -15,6 +15,9 @@ import { NotfoundComponent } from './home/notfound/notfound.component';
 import { PostComponent } from './home/feed/post/post.component';
 import { PostBodyComponent } from './home/feed/post/post-body/post-body.component';
 import { PostImpressionComponent } from './home/feed/post/post-impression/post-impression.component';
+import { FriendsHeaderComponent } from './home/friends/friends-header/friends-header.component';
+import { FriendsBodyComponent } from './home/friends/friends-body/friends-body.component';
+import { FriendBoxComponent } from './home/friends/friends-body/friend-box/friend-box.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { PostImpressionComponent } from './home/feed/post/post-impression/post-i
     NotfoundComponent,
     PostComponent,
     PostBodyComponent,
-    PostImpressionComponent
+    PostImpressionComponent,
+    FriendsHeaderComponent,
+    FriendsBodyComponent,
+    FriendBoxComponent
   ],
   imports: [
     BrowserModule,
