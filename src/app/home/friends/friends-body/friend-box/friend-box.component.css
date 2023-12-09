@@ -1,0 +1,14 @@
+.fs5{
+    font-size: larger;
+}
+.vertPad{
+    padding: 0px;
+}
+@media(max-width:768px) {
+    .fs5{
+        font-size: small;
+    }
+    .vertPad{
+        padding: 5px 0;
+    }
+}

@@ -1,15 +1,15 @@
 <div class="row m-0">
-    <div class="col">
+    <div class="col vertPad">
         <div class="row m-0 ps-2">
             <div class="col">
                 <img src="https://api.dicebear.com/7.x/adventurer/svg?seed={{friendData.lastName}}" alt="">
             </div>
-            <div class="col-8 ps-2 fs-5 fw-bold align-self-center">
+            <div class="col-8 ps-2 fs5 fw-bold align-self-center">
                 {{friendData.firstName}} {{friendData.lastName}}
             </div>
             <div class="col-3 d-flex justify-content-evenly align-items-center">
-                <button class="btn btn-primary">Message</button>
-                <button class="btn btn-danger">Remove</button>
+                <button class="btn btn-primary"><span class="d-md-none"><i class="bi bi-chat-fill"></i></span><span class="d-none d-md-block">Message</span></button>
+                <button class="btn btn-danger"><span class="d-md-none"><i class="bi bi-x-circle-fill"></i></span><span class="d-none d-md-block">Remove</span></button>
             </div>
         </div>
     </div>
