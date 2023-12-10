@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +17,9 @@ import { PostImpressionComponent } from './home/feed/post/post-impression/post-i
 import { FriendsHeaderComponent } from './home/friends/friends-header/friends-header.component';
 import { FriendsBodyComponent } from './home/friends/friends-body/friends-body.component';
 import { FriendBoxComponent } from './home/friends/friends-body/friend-box/friend-box.component';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { firebaseConfig } from 'src/firebase';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,10 @@ import { FriendBoxComponent } from './home/friends/friends-body/friend-box/frien
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    //for firebase authentication with help of angular fire package🔥(first 2 lines)
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,7 @@
 <nav class="navbar navbar-dark bg-dark height-topbar">
   <a class="navbar-brand" href="#">
-    <img
-      src="/assets/images/icons8-network-pastel-glyph-96.png"
-      width="50"
-      height="30"
-      class="d-inline-block align-top px-2"
-      alt=""
-      loading="lazy"
-    />
+    <img src="/assets/images/icons8-network-pastel-glyph-96.png" width="50" height="30"
+      class="d-inline-block align-top px-2 brand" alt="" loading="lazy" />
     <span class="d-none d-md-inline">Socialize</span>
   </a>
   <div class="d-flex justify-content-evenly align-items-center">
@@ -17,8 +11,14 @@
     <i routerLink="/groups" class="bi d-inline d-md-none bi-diagram-3-fill"></i>
   </div>
   <!-- for web -->
-  <button type="button" class="btn d-none d-md-block btn-light me-2">
-    <i class="bi bi-person-fill"></i><span class="fw-medium ms-2">Pratik</span>
+  <button (click)="logOut()" type="button" class="btn d-none d-md-block btn-light me-2">
+    <div class="d-flex align-items-center">
+      <i *ngIf="userData==null;else pic" class="bi bi-person-fill"></i>
+      <ng-template #pic>
+        <img class="profile-pic" [src]="userData.photoURL" alt="profile-pic">
+      </ng-template>
+      <span class="fw-medium ms-2">{{userFirstName}}</span>
+    </div>
   </button>
   <!-- for mobile -->
   <button type="button" class="btn d-block d-md-none btn-dark me-2">

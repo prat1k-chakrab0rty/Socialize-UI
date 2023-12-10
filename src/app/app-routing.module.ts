@@ -7,11 +7,14 @@ import { MessagesComponent } from './home/messages/messages.component';
 import { GroupsComponent } from './home/groups/groups.component';
 import { FriendsComponent } from './home/friends/friends.component';
 import { NotfoundComponent } from './home/notfound/notfound.component';
+import { AuthGuard } from './auth-guard';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   {
     path: '',
     component: HomeComponent,
+    canActivate:[AuthGuard],
     //can put <router-outlet></router-outlet> in the this component's template also
     //  when want to load the children components according to their routes
     //{parentpath}/{childpath} full path for child routes
@@ -23,13 +26,12 @@ const routes: Routes = [
       { path: 'groups', component: GroupsComponent },
       { path: 'not-found', component: NotfoundComponent },
       { path: '**', redirectTo: 'not-found' },
-    ],
+    ]
   },
-  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,5 +1,9 @@
-img{
+img.brand{
     filter: invert();
+}
+img.profile-pic{
+    width: 19.2px;
+    border-radius: 10px;
 }
 .bi{
     color: white;
