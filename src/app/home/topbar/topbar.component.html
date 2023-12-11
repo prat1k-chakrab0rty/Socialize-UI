@@ -11,17 +11,31 @@
     <i routerLink="/groups" class="bi d-inline d-md-none bi-diagram-3-fill"></i>
   </div>
   <!-- for web -->
-  <button (click)="logOut()" type="button" class="btn d-none d-md-block btn-light me-2">
-    <div class="d-flex align-items-center">
-      <i *ngIf="userData==null;else pic" class="bi bi-person-fill"></i>
-      <ng-template #pic>
-        <img class="profile-pic" [src]="userData.photoURL" alt="profile-pic">
-      </ng-template>
-      <span class="fw-medium ms-2">{{userFirstName}}</span>
-    </div>
-  </button>
+  <div class="dropdown d-none d-md-block">
+    <button type="button" class="btn dropdown-toggle btn-light d-flex align-items-center me-2" type="button" id="dropdownMenuButtonWeb" data-bs-toggle="dropdown"
+    aria-expanded="false">
+      <div class="d-flex align-items-center">
+        <i *ngIf="userData==null;else pic" class="bi bi-person-fill"></i>
+        <ng-template #pic>
+          <img class="profile-pic" [src]="userData.photoURL" alt="profile-pic">
+        </ng-template>
+        <span class="fw-medium ms-2">{{userFirstName}}</span>
+      </div>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonWeb">
+      <li><a class="dropdown-item" [routerLink]="'/profile/'+userData.id">My Profile</a></li>
+      <li><a class="dropdown-item" (click)="logOut()">Log Out</a></li>
+    </ul>
+  </div>
   <!-- for mobile -->
-  <button type="button" class="btn d-block d-md-none btn-dark me-2">
-    <i class="bi bi-gear-fill"></i>
-  </button>
+  <div class="dropdown d-block d-md-none">
+    <button class="btn btn-dark dropdown-toggle d-flex align-items-center me-2" type="button" id="dropdownMenuButtonMobile" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <img class="profile-pic mobile me-1" [src]="userData.photoURL" alt="profile-pic">
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButtonMobile">
+      <li><a class="dropdown-item" [routerLink]="'/profile/'+userData.id">My Profile</a></li>
+      <li><a class="dropdown-item" (click)="logOut()">Log Out</a></li>
+    </ul>
+  </div>
 </nav>

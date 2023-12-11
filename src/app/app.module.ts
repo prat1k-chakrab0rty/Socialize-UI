@@ -20,6 +20,7 @@ import { FriendBoxComponent } from './home/friends/friends-body/friend-box/frien
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { firebaseConfig } from 'src/firebase';
+import { ProfileComponent } from './home/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { firebaseConfig } from 'src/firebase';
     PostImpressionComponent,
     FriendsHeaderComponent,
     FriendsBodyComponent,
-    FriendBoxComponent
+    FriendBoxComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,10 @@ img.profile-pic{
     width: 19.2px;
     border-radius: 10px;
 }
+img.mobile{
+    width: 25px;
+    border-radius: 12px;
+}
 .bi{
     color: white;
     padding: 0 10px;
@@ -12,4 +16,7 @@ img.profile-pic{
 }
 .btn-light>.bi{
     color: black;
+}
+.dropdown-item{
+    cursor: pointer;
 }
