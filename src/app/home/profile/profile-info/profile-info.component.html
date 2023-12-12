@@ -1,0 +1,74 @@
+<div class="row m-0 position-relative mb-4">
+    <div class="col-12 backScreen">
+    </div>
+    <div class="col-4 col-md-2 text-center position-absolute t-40">
+        <img [src]="userData.photoURL" alt="profile-pic">
+    </div>
+    <div class="col-4 col-md-2"></div>
+    <div class="col-8 col-md-7 my-auto d-block name-div">
+        <h5 class="fw-bolder">{{userData.fullName}}</h5>
+    </div>
+    <div class="d-none d-md-inline col-3">
+        <div class="py-2 d-flex justify-content-evenly">
+            <button class="btn btn-sm btn-ternary text-dark">Edit Profile</button>
+            <button class="btn btn-sm btn-ternary text-dark">Share Profile</button>
+        </div>
+    </div>
+</div>
+<div class="row m-0 d-block d-md-none">
+    <h5 class=" ps-4 fw-bolder">{{userData.fullName}}</h5>
+</div>
+<div class="row m-0">
+    <p class="ps-4">Tryna inhale love and exhale hatred</p>
+</div>
+<div class="rpw m-0">
+    <div class="col ps-4 location-info">
+        <p>Studied at <span class="fw-bold">Don Bosco Academy</span></p>
+        <p>Lives in <span class="fw-bold">Bengaluru, India</span></p>
+        <p>From <span class="fw-bold">Patna, India</span></p>
+    </div>
+</div>
+<div class="row m-0 px-4 mt-2">
+    <div class="col">
+        <hr class="m-0">
+        <div class="row mx-0">
+            <div class="col counts">
+                <div class="row">
+                    <div [routerLink]="['/profile',userData.id]" (click)="activeTab=0" [ngClass]="{'active':activeTab==0}" class="col">
+                        <span class="me-1">7</span><span><i class="bi bi-image d-inline d-md-none"></i></span><span
+                            class="d-none d-md-inline fw-bolder">
+                            Posts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col counts">
+                <div class="row">
+                    <div  [routerLink]="['/profile',userData.id,'friends']" (click)="activeTab=1" [ngClass]="{'active':activeTab==1}" class="col">
+                        <span class="me-1">199</span><span><i
+                                class="bi bi-person-fill-check d-inline d-md-none"></i></span><span
+                            class="d-none d-md-inline fw-bolder">Friends</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col counts">
+                <div class="row">
+                    <div class="col">
+                        <span class="me-1">4</span><span><i
+                                class="bi bi-diagram-3-fill d-inline d-md-none"></i></span><span
+                            class="d-none d-md-inline fw-bolder">My Groups</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col counts">
+                <div class="row">
+                    <div class="col">
+                        <span class="me-1">1652</span><span><i
+                                class="bi bi-hand-thumbs-up-fill d-inline d-md-none"></i></span><span
+                            class="d-none d-md-inline fw-bolder">Views</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="m-0">
+</div>

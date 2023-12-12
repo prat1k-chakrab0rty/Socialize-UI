@@ -26,3 +26,10 @@
     background-color: black;
     color: white;
 }
+.btn-ternary{
+  background-color: #d9d9d9;
+  color: white;
+}
+.btn-ternary:hover{
+  background-color: rgb(161, 160, 160);
+}

@@ -9,6 +9,7 @@ import { FriendsComponent } from './home/friends/friends.component';
 import { NotfoundComponent } from './home/notfound/notfound.component';
 import { AuthGuard } from './auth-guard';
 import { ProfileComponent } from './home/profile/profile.component';
+import { FriendsBodyComponent } from './home/friends/friends-body/friends-body.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,7 +27,11 @@ const routes: Routes = [
       { path: 'messages', component: MessagesComponent },
       { path: 'groups', component: GroupsComponent },
       { path: 'not-found', component: NotfoundComponent },
-      { path: 'profile/:id', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent,
+      children:[
+        {path:'',component:FeedComponent ,pathMatch:'full'},
+        { path: 'friends', component: FriendsBodyComponent }
+      ] },
       { path: '**', redirectTo: 'not-found' },
     ]
   },

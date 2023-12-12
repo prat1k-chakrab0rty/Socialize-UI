@@ -1,0 +1,40 @@
+.backScreen{
+    height: 10rem;
+    background-color: #f8d2d1;
+}
+img{
+    width: 120px;
+    border-radius: 60px;
+    border: 2px solid white;
+}
+.counts{
+    text-align: center;
+}
+.t-40{
+    top: 50%;
+}
+.location-info > p{
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+}
+.counts>.row>.col{
+    margin: 0 30%;
+    display: flex;
+    flex-direction: column-reverse;
+    cursor: pointer;
+}
+.active{
+    border-top: 2px solid gray ;
+}
+@media(max-width:768px){
+    .name-div{
+        visibility: hidden;
+    }
+    .ps-4{
+        padding-left:10px !important;
+    }
+    .px-4{
+        padding:0 10px !important;
+    }
+}

@@ -21,6 +21,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { firebaseConfig } from 'src/firebase';
 import { ProfileComponent } from './home/profile/profile.component';
+import { ProfileInfoComponent } from './home/profile/profile-info/profile-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ProfileComponent } from './home/profile/profile.component';
     FriendsHeaderComponent,
     FriendsBodyComponent,
     FriendBoxComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileInfoComponent
   ],
   imports: [
     BrowserModule,
