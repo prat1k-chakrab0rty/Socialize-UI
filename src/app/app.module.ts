@@ -19,6 +19,7 @@ import { FriendsBodyComponent } from './home/friends/friends-body/friends-body.c
 import { FriendBoxComponent } from './home/friends/friends-body/friend-box/friend-box.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { firebaseConfig } from 'src/firebase';
 import { ProfileComponent } from './home/profile/profile.component';
 import { ProfileInfoComponent } from './home/profile/profile-info/profile-info.component';
@@ -47,9 +48,10 @@ import { ProfileInfoComponent } from './home/profile/profile-info/profile-info.c
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //for firebase authentication with help of angular fire package🔥(first 2 lines)
+    //for firebase authentication with help of angular fire package🔥(first 3 lines)
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
   ],
   providers: [],
   bootstrap: [AppComponent]

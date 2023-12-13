@@ -5,6 +5,7 @@ import { modules } from './sidebar/sidebar.data';
 import { Auth, GoogleAuthProvider, signInWithPopup, signOut, user } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from '../app.model';
+import { DatabaseService } from '../database.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class HomeService {
   
   private auth: Auth = inject(Auth);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private dbService:DatabaseService) { }
 
   setActiveModule(i: Module) {
     localStorage.setItem("moduleId", i.id.toString());
@@ -26,6 +27,7 @@ export class HomeService {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(this.auth, provider).then(async (data) => {
       const user:User={ email: data.user.email, id: data.user.uid, fullName: data.user.displayName, photoURL: data.user.photoURL };
+      this.dbService.writeUserData(user);
       this.activeUserData.next(user);
       localStorage.setItem('user',JSON.stringify(user));
       await this.router.navigate(["/"]);
