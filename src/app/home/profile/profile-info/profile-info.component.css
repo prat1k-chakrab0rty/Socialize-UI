@@ -37,4 +37,18 @@ img{
     .px-4{
         padding:0 10px !important;
     }
+    .backScreen{
+        height: 6rem;
+    }
+    img{
+        width: 80px;
+        border-radius: 80px;
+        border: 2px solid white;
+    }
+    .t-40{
+        top: 43%;
+    }
+    .position-relative.mb-4{
+        margin-bottom: 0.6rem !important;
+    }
 }

@@ -19,6 +19,6 @@ export class ProfileInfoComponent {
       this.userData=user!;
     });
     this.dbService.readUserData();
-    // this.dbService.getFriendSuggestions(this.userData.id);
+    this.dbService.getFriendSuggestions(this.userData.id);
   }
 }

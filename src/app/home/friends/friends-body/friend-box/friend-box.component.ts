@@ -7,5 +7,5 @@ import { Friend } from '../../friends.model';
   styleUrls: ['./friend-box.component.css']
 })
 export class FriendBoxComponent {
-  @Input() friendData!:Friend;
+  @Input() suggestion!:Friend;
 }

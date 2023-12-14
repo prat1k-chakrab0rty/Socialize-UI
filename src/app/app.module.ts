@@ -20,9 +20,12 @@ import { FriendBoxComponent } from './home/friends/friends-body/friend-box/frien
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 import { firebaseConfig } from 'src/firebase';
 import { ProfileComponent } from './home/profile/profile.component';
 import { ProfileInfoComponent } from './home/profile/profile-info/profile-info.component';
+import { ProfileEditComponent } from './home/profile-edit/profile-edit.component';
+import { HttpClientModule } from  '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,15 +46,18 @@ import { ProfileInfoComponent } from './home/profile/profile-info/profile-info.c
     FriendsBodyComponent,
     FriendBoxComponent,
     ProfileComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     //for firebase authentication with help of angular fire package🔥(first 3 lines)
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent]

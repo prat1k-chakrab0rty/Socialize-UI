@@ -1,0 +1,16 @@
+button,button:hover{
+    color: black;
+    background-color: #7192d2;
+    font-size: small;
+    width: 30%;
+    line-height: .8;
+}
+@media(max-width:768px){
+    button,button:active,button:hover{
+        color: black;
+        background-color: #7192d2;
+        font-size: x-small;
+        width: 50%;
+        line-height: .75;
+    }
+};

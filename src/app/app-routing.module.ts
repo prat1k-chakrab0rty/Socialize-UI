@@ -10,13 +10,14 @@ import { NotfoundComponent } from './home/notfound/notfound.component';
 import { AuthGuard } from './auth-guard';
 import { ProfileComponent } from './home/profile/profile.component';
 import { FriendsBodyComponent } from './home/friends/friends-body/friends-body.component';
+import { ProfileEditComponent } from './home/profile-edit/profile-edit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '',
     component: HomeComponent,
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     //can put <router-outlet></router-outlet> in the this component's template also
     //  when want to load the children components according to their routes
     //{parentpath}/{childpath} full path for child routes
@@ -27,11 +28,14 @@ const routes: Routes = [
       { path: 'messages', component: MessagesComponent },
       { path: 'groups', component: GroupsComponent },
       { path: 'not-found', component: NotfoundComponent },
-      { path: 'profile/:id', component: ProfileComponent,
-      children:[
-        {path:'',component:FeedComponent ,pathMatch:'full'},
-        { path: 'friends', component: FriendsBodyComponent }
-      ] },
+      {
+        path: 'profile/:id', component: ProfileComponent,
+        children: [
+          { path: '', component: FeedComponent, pathMatch: 'full' },
+          { path: 'friends', component: FriendsBodyComponent }
+        ]
+      },
+      { path: 'profile/:id/edit', component: ProfileEditComponent },
       { path: '**', redirectTo: 'not-found' },
     ]
   },

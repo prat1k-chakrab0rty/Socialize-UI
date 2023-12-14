@@ -1,28 +1,49 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Post } from './feed.model';
 import { feedData } from './feed.data';
+import { DatabaseService } from 'src/app/database.service';
+import { HomeService } from '../home.service';
+import { User } from 'src/app/app.model';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
-export class FeedComponent implements OnInit{
-  posts:Post[]=feedData;
-constructor(){}
-ngOnInit(): void {
-  this.posts=this.shuffleArray(this.posts);
-}
-shuffleArray(array:Post[]):Post[] {
-  for (var i = array.length - 1; i > 0; i--) { 
- 
-      // Generate random number 
-      var j = Math.floor(Math.random() * (i + 1));
-                 
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-  }   
-  return array;
-}
+export class FeedComponent implements OnInit {
+  posts: Post[] = feedData;
+  userData!: User;
+  constructor(private dbService: DatabaseService, private homeService: HomeService) { }
+  ngOnInit(): void {
+    //get user data
+    this.homeService.activeUserData.subscribe((data: User | null) => {
+      this.userData = data!;
+      this.dbService.getMyPosts(this.userData.id);
+    })
+    //get my posts
+    this.dbService.myPosts.subscribe((posts:any)=>{
+      this.posts=posts!;
+    });
+  }
+  clickFileBtn(el: HTMLElement) {
+    el.click();
+  }
+  onFileSelected($event: any) {
+    const inputElement = event?.target as HTMLInputElement;
+    if (inputElement.files) {
+      const file: File = inputElement.files[0];
+      if (file) {
+        console.log(file);
+        this.dbService.addImageToStorage(file.name, file);
+        this.dbService.addPost({ uId: this.userData.id, dateTime: new Date(), url: `https://firebasestorage.googleapis.com/v0/b/socialize-api-bc7e3.appspot.com/o/images%2F${file.name.replaceAll(' ', '%20')}?alt=media` }).subscribe({
+          next: (data: any) => {
+            console.log("Post added successfully!");
+          },
+          error: (error: any) => {
+            console.log("Error while adding post");
+          }
+        });
+      }
+    }
+  }
 }
