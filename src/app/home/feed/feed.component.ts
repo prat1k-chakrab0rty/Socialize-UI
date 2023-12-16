@@ -4,6 +4,7 @@ import { feedData } from './feed.data';
 import { DatabaseService } from 'src/app/database.service';
 import { HomeService } from '../home.service';
 import { User } from 'src/app/app.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -13,16 +14,27 @@ import { User } from 'src/app/app.model';
 export class FeedComponent implements OnInit {
   posts: Post[] = feedData;
   userData!: User;
-  constructor(private dbService: DatabaseService, private homeService: HomeService) { }
+  constructor(private dbService: DatabaseService, private homeService: HomeService, private route: ActivatedRoute) { }
   ngOnInit(): void {
     //get user data
     this.homeService.activeUserData.subscribe((data: User | null) => {
       this.userData = data!;
-      this.dbService.getMyPosts(this.userData.id);
     })
-    //get my posts
-    this.dbService.myPosts.subscribe((posts:any)=>{
-      this.posts=posts!;
+  
+    this.route.data.subscribe((value: any) => {
+      //my posts(profile)
+      console.log(value['for']);
+      if (value['for'] == 'my') {
+        this.dbService.getMyPosts(this.userData.id);
+      }
+      //all posts(feed)
+      else {
+        this.dbService.getAllPosts();
+      }
+    })
+    //get posts
+    this.dbService.myPosts.subscribe((posts: any) => {
+      this.posts = posts!;
     });
   }
   clickFileBtn(el: HTMLElement) {

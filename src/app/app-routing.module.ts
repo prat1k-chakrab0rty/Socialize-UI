@@ -23,7 +23,7 @@ const routes: Routes = [
     //{parentpath}/{childpath} full path for child routes
     children: [
       { path: '', redirectTo: 'feed', pathMatch: 'full' },
-      { path: 'feed', component: FeedComponent },
+      { path: 'feed', component: FeedComponent,data:{for:'all'} },
       { path: 'friends', component: FriendsComponent },
       { path: 'messages', component: MessagesComponent },
       { path: 'groups', component: GroupsComponent },
@@ -31,7 +31,7 @@ const routes: Routes = [
       {
         path: 'profile/:id', component: ProfileComponent,
         children: [
-          { path: '', component: FeedComponent, pathMatch: 'full' },
+          { path: '', component: FeedComponent, pathMatch: 'full',data:{for:'my'} },
           { path: 'friends', component: FriendsBodyComponent }
         ]
       },

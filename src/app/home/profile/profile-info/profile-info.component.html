@@ -43,7 +43,7 @@
             <div class="col counts">
                 <div class="row">
                     <div [routerLink]="['/profile',userData.id]" (click)="activeTab=0" [ngClass]="{'active':activeTab==0}" class="col">
-                        <span class="me-1">7</span><span><i class="bi bi-image d-inline d-md-none"></i></span><span
+                        <span class="me-1">{{postsCount==0?'-':postsCount}}</span><span><i class="bi bi-image d-inline d-md-none"></i></span><span
                             class="d-none d-md-inline fw-bolder">
                             Posts</span>
                     </div>

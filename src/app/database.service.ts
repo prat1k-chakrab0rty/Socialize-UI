@@ -12,7 +12,7 @@ export class DatabaseService {
   suggestion: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   myPosts: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   constructor(private http: HttpClient) { }
-  private dbURL:string='https://socialize-api-bc7e3-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  private dbURL: string = 'https://socialize-api-bc7e3-default-rtdb.asia-southeast1.firebasedatabase.app/';
   writeUserData(data: User) {
     const db = getDatabase();
     const { id, ...req } = data;
@@ -51,18 +51,48 @@ export class DatabaseService {
   }
   addPost(data: Post) {
     const { uId, ...req } = data;
-    return this.http.post(`${this.dbURL}posts/${uId}.json`,req);
+    return this.http.post(`${this.dbURL}posts/${uId}.json`, req);
   }
-  getMyPosts(id:string) {
+  getMyPosts(id: string) {
     const db = getDatabase();
-    const myPostsRef = ref(db, 'posts/'+id+'/');
+    const myPostsRef = ref(db, 'posts/' + id + '/');
     onValue(myPostsRef, (snapshot) => {
       const data = snapshot.val();
       const keys = Object.keys(data);
-      const posts:any[]=[];
-      keys.forEach(k => posts.push(data[k]));
+      const posts: any[] = [];
+      keys.forEach(k => {
+        const userRef = ref(db, 'users/' + id);
+        onValue(userRef, (snapshot) => {
+          const user = snapshot.val();
+          posts.push({name:user.fullName,...data[k]})
+        });
+      }
+      );
       this.myPosts.next(posts);
       console.log(posts);
+    });
+  }
+
+  getAllPosts(){
+    const db = getDatabase();
+    const postsRef = ref(db, 'posts/');
+    onValue(postsRef, (snapshot) => {
+      const posts = snapshot.val();
+      const keys = Object.keys(posts);
+      const postsRes: any[] = [];
+      keys.forEach(k => {
+        const userRef = ref(db, 'users/' + k);
+        onValue(userRef, (snapshot) => {
+          const user = snapshot.val();
+          const userPosts=posts[k];
+          const keys = Object.keys(userPosts);
+          keys.forEach((up:any,index:number)=>{
+            postsRes.push({name:user.fullName,...userPosts[up]})
+          })
+        });
+      }
+      );
+      this.myPosts.next(postsRes);
     });
   }
 }
