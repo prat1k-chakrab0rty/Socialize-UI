@@ -26,6 +26,7 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { ProfileInfoComponent } from './home/profile/profile-info/profile-info.component';
 import { ProfileEditComponent } from './home/profile-edit/profile-edit.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { HttpClientModule } from  '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     //for firebase authentication with help of angular fire package🔥(first 3 lines)
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),

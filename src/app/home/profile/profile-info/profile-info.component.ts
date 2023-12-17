@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HomeService } from '../../home.service';
 import { User } from 'src/app/app.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -11,21 +11,15 @@ import { Post } from '../../feed/post.model';
   styleUrls: ['./profile-info.component.css']
 })
 export class ProfileInfoComponent {
-  constructor(private homeService:HomeService,private route:ActivatedRoute,private dbService:DatabaseService) {}
-  userData!:User;
-  postsCount:number=0;
-  activeTab:number=0;
-  ngOnInit(){
-    //get user data
-    this.homeService.activeUserData.subscribe((user:User|null)=>{
-      this.userData=user!;
-    });
+  constructor(private homeService: HomeService, private route: ActivatedRoute, private dbService: DatabaseService) { }
+  @Input() userData: User|null=null;
+  @Input() isMe!: boolean;
+  postsCount: number = 0;
+  activeTab: number = 0;
+  ngOnInit() {
     //get posts count
-    this.dbService.myPosts.subscribe((posts:any)=>{
-      this.postsCount=posts==null?0:posts.length;
+    this.dbService.myPosts.subscribe((posts: any) => {
+      this.postsCount = posts == null ? 0 : posts.length;
     })
-    this.dbService.readUserData();
-    this.dbService.getFriendSuggestions(this.userData.id);
-    this.dbService.getAllPosts();
   }
 }

@@ -4,7 +4,7 @@ import { feedData } from './feed.data';
 import { DatabaseService } from 'src/app/database.service';
 import { HomeService } from '../home.service';
 import { User } from 'src/app/app.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -14,18 +14,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FeedComponent implements OnInit {
   posts: Post[] = feedData;
   userData!: User;
+  uId!:string;
   constructor(private dbService: DatabaseService, private homeService: HomeService, private route: ActivatedRoute) { }
   ngOnInit(): void {
     //get user data
     this.homeService.activeUserData.subscribe((data: User | null) => {
       this.userData = data!;
     })
-  
+
     this.route.data.subscribe((value: any) => {
       //my posts(profile)
-      console.log(value['for']);
       if (value['for'] == 'my') {
-        this.dbService.getMyPosts(this.userData.id);
+        //get user data
+        this.route.params.subscribe((param: Params) => {
+          this.uId = param['id'];
+        });
+        this.dbService.getUserById(this.uId).subscribe((user: any) => {
+          this.userData = user!;
+        });
+        this.dbService.getMyPosts(this.uId);
       }
       //all posts(feed)
       else {

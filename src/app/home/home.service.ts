@@ -26,7 +26,7 @@ export class HomeService {
   async loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     await signInWithPopup(this.auth, provider).then(async (data) => {
-      const user:User={ email: data.user.email, id: data.user.uid, fullName: data.user.displayName, photoURL: data.user.photoURL };
+      const user:any={ email: data.user.email, id: data.user.uid, fullName: data.user.displayName, photoURL: data.user.photoURL,from:'Bengaluru',bio:'Tryna inhale love and exhale hatred',school:'Don Bosco Academy'};
       this.dbService.writeUserData(user);
       this.activeUserData.next(user);
       localStorage.setItem('user',JSON.stringify(user));

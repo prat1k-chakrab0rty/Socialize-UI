@@ -3,7 +3,7 @@
     <i class="bi bi-person-circle fs-2"></i>
     <div class=" ms-2 d-flex flex-column align-items-start justify-content-center">
       <p class="m-0">
-        <span class="fw-bold">{{postData.name}}</span> has posted a photo.
+        <span class="fw-bold cp" routerLink="/profile/{{postData.id}}">{{postData.name}}</span> has posted a photo.
       </p>
       <p class="m-0 time-ago">{{postData.dateTime | date:'MMM d, y h:mm a'}}</p>
     </div>

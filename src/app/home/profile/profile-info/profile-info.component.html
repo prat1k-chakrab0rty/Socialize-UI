@@ -2,36 +2,39 @@
     <div class="col-12 backScreen">
     </div>
     <div class="col-3 col-md-2 text-center position-absolute t-40">
-        <img [src]="userData.photoURL" alt="profile-pic">
+        <img [src]="userData?.photoURL" alt="profile-pic">
     </div>
     <div class="col-3 col-md-2"></div>
     <div class="col-9 col-md-7 my-auto d-block name-div">
-        <h5 class="fw-bolder">{{userData.fullName}}</h5>
+        <h5 class="fw-bolder">{{userData?.fullName}}</h5>
     </div>
     <div class="d-none d-md-inline col-3">
         <div class="py-2 d-flex justify-content-evenly">
-            <button [routerLink]="['/profile',userData.id,'edit']" class="btn btn-sm btn-ternary text-dark">Edit Profile</button>
+            <button *ngIf="isMe" [routerLink]="['/profile',userData?.id,'edit']"
+                class="btn btn-sm btn-ternary text-dark">Edit Profile</button>
+            <button *ngIf="!isMe" class="btn btn-sm btn-primary">Add Friend</button>
             <button class="btn btn-sm btn-ternary text-dark">Share Profile</button>
         </div>
     </div>
 </div>
 <div class="row m-0 d-block d-md-none">
-    <h5 class=" ps-4 fw-bolder">{{userData.fullName}}</h5>
+    <h5 class=" ps-4 fw-bolder">{{userData?.fullName}}</h5>
 </div>
 <div class="row m-0">
-    <p class="ps-4">Tryna inhale love and exhale hatred</p>
+    <p class="ps-4">{{userData?.bio}}</p>
 </div>
 <div class="row m-0">
     <div class="col ps-4 location-info">
-        <p>Studied at <span class="fw-bold">Don Bosco Academy</span></p>
-        <p>Lives in <span class="fw-bold">Bengaluru, India</span></p>
-        <p>From <span class="fw-bold">Patna, India</span></p>
+        <p *ngIf="userData?.school">Studied at <span class="fw-bold">{{userData?.school}}</span></p>
+        <p *ngIf="userData?.from">From <span class="fw-bold">{{userData?.from}}</span></p>
     </div>
 </div>
 <div class="row m-0 d-block d-md-none">
     <div class="col-7">
         <div class="py-2 d-flex justify-content-between mx-2">
-            <button [routerLink]="['/profile',userData.id,'edit']" class="btn btn-sm btn-ternary text-dark">Edit Profile</button>
+            <button *ngIf="isMe" [routerLink]="['/profile',userData?.id,'edit']"
+                class="btn btn-sm btn-ternary text-dark">Edit Profile</button>
+            <button *ngIf="!isMe" class="btn btn-sm btn-primary">Add Friend</button>
             <button class="btn btn-sm btn-ternary text-dark">Share Profile</button>
         </div>
     </div>
@@ -42,8 +45,10 @@
         <div class="row mx-0">
             <div class="col counts">
                 <div class="row">
-                    <div [routerLink]="['/profile',userData.id]" (click)="activeTab=0" [ngClass]="{'active':activeTab==0}" class="col">
-                        <span class="me-1">{{postsCount==0?'-':postsCount}}</span><span><i class="bi bi-image d-inline d-md-none"></i></span><span
+                    <div [routerLink]="['/profile',userData?.id]" (click)="activeTab=0"
+                        [ngClass]="{'active':activeTab==0}" class="col">
+                        <span class="me-1">{{postsCount==0?'-':postsCount}}</span><span><i
+                                class="bi bi-image d-inline d-md-none"></i></span><span
                             class="d-none d-md-inline fw-bolder">
                             Posts</span>
                     </div>
@@ -51,7 +56,8 @@
             </div>
             <div class="col counts">
                 <div class="row">
-                    <div  [routerLink]="['/profile',userData.id,'friends']" (click)="activeTab=1" [ngClass]="{'active':activeTab==1}" class="col">
+                    <div [routerLink]="['/profile',userData?.id,'friends']" (click)="activeTab=1"
+                        [ngClass]="{'active':activeTab==1}" class="col">
                         <span class="me-1">199</span><span><i
                                 class="bi bi-person-fill-check d-inline d-md-none"></i></span><span
                             class="d-none d-md-inline fw-bolder">Friends</span>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, onValue, push, ref, set } from '@angular/fire/database';
+import { child, getDatabase, onValue, push, ref, set, update } from '@angular/fire/database';
 import { User } from './app.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Post } from './home/feed/post.model';
 import { getStorage, uploadBytes, ref as sRef } from '@angular/fire/storage';
 import { HttpClient } from '@angular/common/http';
@@ -37,7 +37,7 @@ export class DatabaseService {
       // console.log(suggestions);
       const keys = Object.keys(suggestions);
       const res: any[] = [];
-      keys.forEach(k => res.push(suggestions[k]));
+      keys.forEach(k => res.push({ id: k, ...suggestions[k] }));
       this.suggestion.next(res);
     });
   }
@@ -64,16 +64,15 @@ export class DatabaseService {
         const userRef = ref(db, 'users/' + id);
         onValue(userRef, (snapshot) => {
           const user = snapshot.val();
-          posts.push({name:user.fullName,...data[k]})
+          posts.push({ id: id, name: user.fullName, ...data[k] })
         });
       }
       );
       this.myPosts.next(posts);
-      console.log(posts);
     });
   }
 
-  getAllPosts(){
+  getAllPosts() {
     const db = getDatabase();
     const postsRef = ref(db, 'posts/');
     onValue(postsRef, (snapshot) => {
@@ -84,15 +83,32 @@ export class DatabaseService {
         const userRef = ref(db, 'users/' + k);
         onValue(userRef, (snapshot) => {
           const user = snapshot.val();
-          const userPosts=posts[k];
+          const userPosts = posts[k];
           const keys = Object.keys(userPosts);
-          keys.forEach((up:any,index:number)=>{
-            postsRes.push({name:user.fullName,...userPosts[up]})
+          keys.forEach((up: any, index: number) => {
+            postsRes.push({ id: k, name: user.fullName, ...userPosts[up] })
           })
         });
       }
       );
       this.myPosts.next(postsRes);
     });
+  }
+
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.dbURL}/users/${id}.json`).pipe(map(u => ({ ...u, id })));
+  }
+
+  updateUserById(userData: User) {
+    const db = getDatabase();
+
+    // A user entry.
+    const { id, ...req } = userData;
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    const updates: any = {};
+    updates['/users/' + id] = userData;
+
+    return update(ref(db), updates);
   }
 }

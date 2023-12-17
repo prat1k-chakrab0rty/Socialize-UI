@@ -1,5 +1,6 @@
-export interface Friend{
-    fullName:number,
-    photoURL:string,
-    email:string
+export interface Friend {
+    id: string,
+    fullName: number,
+    photoURL: string,
+    email: string
 }
